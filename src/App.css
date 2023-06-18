@@ -1,0 +1,20 @@
+.btn_search{
+    width: 100px;
+    height: 54px;
+}
+
+.search_box{
+    width: 600px;
+    min-height: 5vh !important;
+}
+
+.item-quantity{
+    color:#706d6d;
+    font-family: "arial";
+    font-size: 30px;
+}
+
+.stock-item-price-box{
+    min-width: 100px;
+    border-right: 0.5px solid gray;
+}
