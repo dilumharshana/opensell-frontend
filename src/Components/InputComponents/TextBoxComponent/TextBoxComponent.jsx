@@ -3,7 +3,7 @@ import { TextField } from "@mui/material";
 export const TextBoxComponent = ({
   value,
   onChange,
-  placeHolder,
+  placeholder,
   style,
   error,
   type,
@@ -12,12 +12,13 @@ export const TextBoxComponent = ({
   label,
   fullWidth,
   className,
+  onKeyDown
 }) => {
   return (
     <TextField
       value={value}
       onChange={onChange}
-      placeHolder={placeHolder}
+      placeholder={placeholder}
       style={style}
       error={error}
       type={type}
@@ -26,6 +27,7 @@ export const TextBoxComponent = ({
       label={label}
       fullWidth={fullWidth}
       className={className}
+      onKeyDown={onKeyDown}
     />
   );
 };

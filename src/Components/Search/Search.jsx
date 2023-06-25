@@ -15,6 +15,12 @@ export const SearchBar = ({ search, setSearch, handleSearch }) => {
           label="Search Product"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSearch();
+              setSearch("");
+            }
+          }}
           className="search_box"
           InputProps={{
             endAdornment: (
@@ -33,6 +39,10 @@ export const SearchBar = ({ search, setSearch, handleSearch }) => {
           className="btn_search"
           size="large"
           style={searchBtnStyle}
+          onClick={() => {
+            handleSearch();
+            setSearch("");
+          }}
         />
       </Grid>
     </Grid>

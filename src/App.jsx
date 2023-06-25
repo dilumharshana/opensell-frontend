@@ -1,9 +1,17 @@
+import { useDispatch } from "react-redux";
 import "./App.css";
-import { useFetchStockItemsQuery } from "./Features/Api/apiSlice";
+import { fetchStockItems } from "./Features/stockSlice";
 import MainAppLayout from "./layouts/MainAppLayout/MainAppLayout";
+import { useEffect } from "react";
 
 function App() {
-  useFetchStockItemsQuery();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log();
+    dispatch(fetchStockItems());
+  }, [dispatch]);
+
   return <MainAppLayout />;
 }
 

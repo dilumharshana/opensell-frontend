@@ -7,7 +7,7 @@ import { TextBoxComponent } from "../TextBoxComponent/TextBoxComponent";
 export const DatePickerComponent = ({
   value,
   onChange,
-  placeHolder,
+  placeholder,
   style,
   error,
   label,
@@ -20,7 +20,7 @@ export const DatePickerComponent = ({
           value={value}
           onChange={onChange}
           label={label}
-          placeHolder={placeHolder}
+          placeholder={placeholder}
           error={error}
           renderInput={(params) => (
             <TextBoxComponent {...params} fullWidth={true} />

@@ -9,12 +9,10 @@ import Api from "../../Services/apiCallsHandler";
 import { DatePickerComponent } from "../InputComponents/DatePickerComponent/DatePickerComponent";
 import { endPoints } from "../../Constants/endpoints";
 import moment from "moment";
+import { additems } from "../../Features/stockSlice";
+import { useDispatch } from "react-redux";
 
-const handlAddItem = async (item) => {
-  const api = new Api();
-
-  const response = await api.post(endPoints.addItem, item);
-};
+;
 
 const initialItemData = {
   [stringConstants.itemName]: "",
@@ -34,7 +32,17 @@ const reducer = (state, action) => {
 
 export const AddStockItems = () => {
   const [item, dispatch] = useReducer(reducer, initialItemData);
-  console.log(item);
+  
+  const stockItemDispatch =useDispatch()
+
+  const handlAddItem = async () => {
+    const api = new Api();
+  
+    const response = await api.post(endPoints.addItem, item);
+    if (response.status === 200) {
+      stockItemDispatch(additems(item));
+    }
+  }
 
   return (
     <>

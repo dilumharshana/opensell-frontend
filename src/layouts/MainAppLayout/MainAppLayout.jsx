@@ -62,7 +62,7 @@ export default function MainAppLayout() {
           sx={{
             display: "flex",
             width: "100vw",
-            height: `calc(100vh-${navbar.clientHeight}px)`,
+            // height: `calc(100vh-${navbar.clientHeight}px)`,
           }}
         >
           <TabPanel value={value} index={0}>
