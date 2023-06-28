@@ -9,21 +9,27 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { greeTheme, redTheme } from "../../Constants/styles";
 import { useDispatch } from "react-redux";
-import { decrementItemQuantity, incrementItemQuantity, removeCartItem } from "../../Features/cartSlice";
+import {
+  decrementItemQuantity,
+  incrementItemQuantity,
+  removeCartItem,
+} from "../../Features/cartSlice";
 
 export const CartItem = ({ item, styles = null }) => {
   const cartItemDispatch = useDispatch();
 
   const removeItem = () => cartItemDispatch(removeCartItem(item.ITEM_CODE));
-  const incrementItem = () => cartItemDispatch(incrementItemQuantity(item.ITEM_CODE));
-  const decrementItem = () => cartItemDispatch(decrementItemQuantity(item.ITEM_CODE));
+  const incrementItem = () =>
+    cartItemDispatch(incrementItemQuantity(item.ITEM_CODE));
+  const decrementItem = () =>
+    cartItemDispatch(decrementItemQuantity(item.ITEM_CODE));
 
   return (
-    <Grid item xs={12} sm={12} md={12} lg={10} xl={10}>
+    <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
       <Card sx={styles}>
         <Grid container>
           {/* name and description */}
-          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+          <Grid item xs={12} sm={12} md={6} lg={5} xl={5}>
             <CardContent sx={{ flex: "1 0 auto" }}>
               <Typography component="div" variant="h5">
                 {item?.ITEM_NAME && item.ITEM_NAME}
@@ -54,7 +60,7 @@ export const CartItem = ({ item, styles = null }) => {
             </CardContent>
           </Grid>
 
-          {/* options */}
+          {/* price */}
           <Grid
             item
             xs={12}
@@ -62,6 +68,24 @@ export const CartItem = ({ item, styles = null }) => {
             md={2}
             lg={2}
             xl={2}
+            display="flex"
+            alignItems="center"
+          >
+            <CardContent sx={{ flex: "1 0 auto" }}>
+              <span className="item-quantity">
+                {item?.ITEM_QUANTITY * item.IEM_SELLING_PRICE}
+              </span>
+            </CardContent>
+          </Grid>
+
+          {/* options */}
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={2}
+            lg={1}
+            xl={1}
             display="flex"
             alignItems="center"
           >

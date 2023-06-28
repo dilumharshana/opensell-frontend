@@ -18,7 +18,6 @@ export const SearchBar = ({ search, setSearch, handleSearch }) => {
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSearch();
-              setSearch("");
             }
           }}
           className="search_box"
