@@ -17,14 +17,17 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.2",
     "@mui/x-date-pickers": "^6.6.0",
+    "@react-thermal-printer/printer": "^0.10.0",
     "@reduxjs/toolkit": "^1.9.0-rc.1",
     "antd": "^5.5.1",
     "axios": "^1.4.0",
+    "classnames": "^2.3.2",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.2",
+    "react-thermal-printer": "^0.13.0",
     "redux": "^4.2.1"
   },
   "devDependencies": {
