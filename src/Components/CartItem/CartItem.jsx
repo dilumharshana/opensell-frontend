@@ -27,19 +27,12 @@ export const CartItem = ({ item, styles = null }) => {
   return (
     <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
       <Card sx={styles}>
-        <Grid container>
+        <Grid container alignItems="center"> 
           {/* name and description */}
           <Grid item xs={12} sm={12} md={6} lg={5} xl={5}>
-            <CardContent sx={{ flex: "1 0 auto" }}>
+            <CardContent >
               <Typography component="div" variant="h5">
                 {item?.ITEM_NAME && item.ITEM_NAME}
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                color="text.secondary"
-                component="div"
-              >
-                {item?.ITEM_DESC && item.ITEM_DESC}
               </Typography>
             </CardContent>
           </Grid>
@@ -52,10 +45,9 @@ export const CartItem = ({ item, styles = null }) => {
             md={2}
             lg={2}
             xl={2}
-            display="flex"
-            alignItems="center"
+
           >
-            <CardContent sx={{ flex: "1 0 auto" }}>
+            <CardContent >
               <span className="item-quantity">{item?.ITEM_QUANTITY}</span>
             </CardContent>
           </Grid>
@@ -68,10 +60,9 @@ export const CartItem = ({ item, styles = null }) => {
             md={2}
             lg={2}
             xl={2}
-            display="flex"
-            alignItems="center"
+
           >
-            <CardContent sx={{ flex: "1 0 auto" }}>
+            <CardContent >
               <span className="item-quantity">
                 {item?.ITEM_QUANTITY * item.IEM_SELLING_PRICE}
               </span>
@@ -86,11 +77,10 @@ export const CartItem = ({ item, styles = null }) => {
             md={2}
             lg={1}
             xl={1}
-            display="flex"
-            alignItems="center"
+
           >
-            <CardContent sx={{ flex: "1 0 auto" }}>
-              <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
+            <CardContent >
+              <Box sx={{ display: "flex", alignItems: "center"}}>
                 <IconButton aria-label="previous" onClick={incrementItem}>
                   <AddCircleIcon sx={{ color: greeTheme }} />
                 </IconButton>

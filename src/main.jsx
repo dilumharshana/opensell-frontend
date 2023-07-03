@@ -9,9 +9,9 @@ import initializer from "./Services/initializer.js";
 initializer();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>
+  </>
 );

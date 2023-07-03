@@ -25,7 +25,6 @@ export const BillingPanel = () => {
   };
 
   const handleAddItem = () => {
-    console.log("Called");
     const item = stockItems.filter((item) => item.ITEM_CODE === search);
     cartDispatch(addCartitem({ ...item[0], IEM_SELLING_PRICE: sellingPrice }));
     clearBillingState();
@@ -47,7 +46,7 @@ export const BillingPanel = () => {
         clearBillingState={clearBillingState}
         handleAddItem={handleAddItem}
         openPriceModal={openPriceModal}
-        setOpenPriceModal={setOpenPriceModal}
+        cancelPriceModal={() => setOpenPriceModal(false)}
       />
     </>
   );

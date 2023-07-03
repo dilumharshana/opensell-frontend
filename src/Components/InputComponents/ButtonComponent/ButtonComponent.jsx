@@ -9,6 +9,7 @@ export const ButtonComponent = ({
   disabled,
   className,
   size,
+  sx
 }) => {
   return (
     <Button
@@ -20,6 +21,7 @@ export const ButtonComponent = ({
       style={style}
       disabled={disabled}
       className={className}
+      sx={sx}
     >
       {label}
     </Button>

@@ -5,8 +5,10 @@ import EditIcon from "@mui/icons-material/Edit";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import { Box, Card, Grid, IconButton, Typography } from "@mui/material";
 import { greeTheme } from "../../Constants/styles";
+import { createDispatchAction } from "../../Utills/createDispatchAction";
+import { stringConstants } from "../../Constants/StringConstants";
 
-export const StockItem = ({ item, styles }) => {
+export const StockItem = ({ item, styles, dispatch }) => {
   return (
     <Grid item sx={12} sm={12} md={4} lg={3} xl={3}>
       <Card sx={styles}>
@@ -15,14 +17,14 @@ export const StockItem = ({ item, styles }) => {
           <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
             <CardContent sx={{ flex: "1 0 auto" }}>
               <Typography component="div" variant="h5">
-                {item?.ITEM_NAME && item.ITEM_NAME}
+                {item?.[stringConstants.itemName] && item[stringConstants.itemName]}
               </Typography>
               <Typography
                 variant="subtitle1"
                 color="text.secondary"
                 component="div"
               >
-                {item?.ITEM_DESC && item.ITEM_DESC}
+                {item?.[stringConstants.itemDesc] && item[stringConstants.itemDesc]}
               </Typography>
 
               <Box display="flex" mt={3}>
@@ -36,7 +38,7 @@ export const StockItem = ({ item, styles }) => {
                   >
                     <AttachMoneyIcon />
                     <Box ml={1}>
-                      {item?.SELLING_PRICE && item.SELLING_PRICE}
+                      {item?.[stringConstants.sellingPrice] && item[stringConstants.sellingPrice]}
                     </Box>
                   </Typography>
                 </Box>
@@ -69,7 +71,12 @@ export const StockItem = ({ item, styles }) => {
           >
             <CardContent sx={{ flex: "1 0 auto" }}>
               <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-                <IconButton aria-label="previous">
+                <IconButton
+                  aria-label="previous"
+                  onClick={() =>
+                    dispatch(createDispatchAction("RESET_STATE", item))
+                  }
+                >
                   <EditIcon />
                 </IconButton>
                 <IconButton aria-label="next">

@@ -7,10 +7,10 @@ export const BillingLayout = () => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item lg={8}>
+      <Grid item lg={6}>
         <BillingPanel  />
       </Grid>
-      <Grid item lg={4}>
+      <Grid item lg={6}>
         <Cart />
       </Grid>
     </Grid>

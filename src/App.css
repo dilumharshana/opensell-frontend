@@ -1,20 +1,31 @@
-.btn_search{
-    width: 100px;
-    height: 54px;
+.btn_search {
+  width: 100px;
+  height: 54px;
 }
 
-.search_box{
-    width: 600px;
-    min-height: 5vh !important;
+.search_box {
+  width: 500px;
+  min-height: 5vh !important;
 }
 
-.item-quantity{
-    color:#706d6d;
-    font-family: "arial";
-    font-size: 30px;
+.item-quantity {
+  color: #706d6d;
+  font-family: "arial";
+  font-size: 30px;
 }
 
-.stock-item-price-box{
-    min-width: 100px;
-    border-right: 0.5px solid gray;
+.stock-item-price-box {
+  min-width: 100px;
+  border-right: 0.5px solid gray;
+}
+
+.selling-price-modal {
+  width: "30vw";
+  height: "auto";
+  position: "absolute";
+  top: "40%";
+  left: "35%";
+  background: "#fff";
+  padding: "2%";
+  border: "none";
 }

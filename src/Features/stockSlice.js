@@ -23,9 +23,9 @@ export const stockSlice = createSlice({
   initialState,
   reducers: {
     additems: (state, action) => {
-        return {
+      return {
         fetching: false,
-        stockItems: [...state.stockItems, action.payload],
+        stockItems: [action.payload, ...state.stockItems],
         error: "",
       };
     },

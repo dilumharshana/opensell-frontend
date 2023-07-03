@@ -2,6 +2,8 @@ import { Box, Stack } from "@mui/material";
 import { ModalCopmonet } from "../ModalComponent/ModalComponent";
 import { TextBoxComponent } from "../InputComponents/TextBoxComponent/TextBoxComponent";
 import { ButtonComponent } from "../InputComponents/ButtonComponent/ButtonComponent";
+import { sellingPriceModal } from "../../Constants/styles";
+import { useEffect, useRef } from "react";
 
 export const SelingPriceModal = ({
   sellingPrice,
@@ -9,42 +11,37 @@ export const SelingPriceModal = ({
   clearBillingState,
   handleAddItem,
   openPriceModal,
-  setOpenPriceModal
+  cancelPriceModal,
 }) => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    console.log("ref => ", ref);
+    if (ref.current) {
+      ref.current.focus();
+    }
+  }, [ref]);
+
   return (
-    <ModalCopmonet open={openPriceModal} handleClose={setOpenPriceModal}>
-      <Box
-        style={{
-          width: "20vw",
-          height: "10vh",
-          position: "absolute",
-          top: "40%",
-          left: "40%",
-          background: "#fff",
-          padding: "2%",
-        }}
-        alignItems="center"
-      >
-        <Stack mt={1} direction="row" spacing={2} alignItems="center">
-          <span>Enter Selling Price</span>
-          <TextBoxComponent
-            value={sellingPrice}
-            onChange={(e) => setSellingPrice(e.target.value)}
-          />
-        </Stack>
-        <Stack mt={4} direction="row" spacing={2} justifyContent="flex-end">
-          <ButtonComponent
-            label="Cancel"
-            variant="outlined"
-            onClick={clearBillingState}
-          />
-          <ButtonComponent
-            label="Add Item"
-            onClick={handleAddItem}
-            disabled={sellingPrice.length === 0}
-          />
-        </Stack>
-      </Box>
+    <ModalCopmonet
+      open={openPriceModal}
+      onCancel={cancelPriceModal}
+      onOk={handleAddItem}
+      okuttonDisabled={sellingPrice.length === 0}
+    >
+      <Stack mt={1} direction="row" spacing={2} alignItems="center">
+        <span>Enter Selling Price</span>
+        <TextBoxComponent
+          value={sellingPrice}
+          onChange={(e) => setSellingPrice(e.target.value)}
+          ref={ref}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleAddItem();
+            }
+          }}
+        />
+      </Stack>
     </ModalCopmonet>
   );
 };

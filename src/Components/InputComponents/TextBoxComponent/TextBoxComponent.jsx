@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import { TextField } from "@mui/material";
+import { NumericFormat } from "react-number-format";
 
 export const TextBoxComponent = forwardRef(
   (
@@ -13,13 +14,31 @@ export const TextBoxComponent = forwardRef(
       variant,
       size = "small",
       label,
-      fullWidth,
+      fullWidth = true,
       className,
       onKeyDown,
+      focus,
+      autoFocus,
+      thousandSeparator = false,
+      required = false,
+      numericInput = false,
     },
     ref
   ) => {
-    console.log(ref);
+    if (numericInput) {
+      return (
+        <NumericInput
+          value={value}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+          thousandSeparator={thousandSeparator}
+          required={required}
+          lablel={label}
+          ref={ref}
+        />
+      );
+    }
+
     return (
       <TextField
         value={value}
@@ -33,6 +52,34 @@ export const TextBoxComponent = forwardRef(
         label={label}
         fullWidth={fullWidth}
         className={className}
+        onKeyDown={onKeyDown}
+        inputRef={ref}
+        focused={focus}
+        autoFocus={autoFocus}
+        required={required}
+      />
+    );
+  }
+);
+
+const NumericInput = forwardRef(
+  (
+    { value, onChange, onKeyDown, thousandSeparator, required, lablel },
+    ref
+  ) => {
+    return (
+      <NumericFormat
+        customInput={TextBoxComponent}
+        variant="outlined"
+        thousandSeparator={thousandSeparator}
+        label={lablel}
+        value={value}
+        decimalScale={2}
+        onValueChange={(e) => {
+          const { value } = e;
+          onChange(value);
+        }}
+        required={required}
         onKeyDown={onKeyDown}
         ref={ref}
       />

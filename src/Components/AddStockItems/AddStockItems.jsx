@@ -1,48 +1,37 @@
-import { useReducer } from "react";
+import moment from "moment";
+import { useDispatch } from "react-redux";
 import { stringConstants } from "../../Constants/StringConstants";
+import { endPoints } from "../../Constants/endpoints";
+import { additems } from "../../Features/stockSlice";
+import Api from "../../Services/apiCallsHandler";
 import { createDispatchAction } from "../../Utills/createDispatchAction";
+import { ButtonComponent } from "../InputComponents/ButtonComponent/ButtonComponent";
+import { DatePickerComponent } from "../InputComponents/DatePickerComponent/DatePickerComponent";
 import { TextBoxComponent } from "../InputComponents/TextBoxComponent/TextBoxComponent";
 import { InputWrapper } from "../InputWrapper/InputWrapper";
 import { InputWrapperStack } from "../InputWrapperStack/InputWrapperStack";
-import { ButtonComponent } from "../InputComponents/ButtonComponent/ButtonComponent";
-import Api from "../../Services/apiCallsHandler";
-import { DatePickerComponent } from "../InputComponents/DatePickerComponent/DatePickerComponent";
-import { endPoints } from "../../Constants/endpoints";
-import moment from "moment";
-import { additems } from "../../Features/stockSlice";
-import { useDispatch } from "react-redux";
+import { greeTheme } from "../../Constants/styles";
 
-;
-
-const initialItemData = {
-  [stringConstants.itemName]: "",
-  [stringConstants.itemCode]: "",
-  [stringConstants.itemDesc]: "",
-  [stringConstants.itemPurchasePrice]: null,
-  [stringConstants.itemSellingPrice]: null,
-  [stringConstants.itemAmount]: null,
-};
-
-const reducer = (state, action) => {
-  return {
-    ...state,
-    [action?.type]: action?.payload,
-  };
-};
-
-export const AddStockItems = () => {
-  const [item, dispatch] = useReducer(reducer, initialItemData);
-  
-  const stockItemDispatch =useDispatch()
+export const AddStockItems = ({ item, dispatch }) => {
+  const stockItemDispatch = useDispatch();
 
   const handlAddItem = async () => {
     const api = new Api();
-  
+
     const response = await api.post(endPoints.addItem, item);
-    if (response.status === 200) {
-      stockItemDispatch(additems(item));
+    if (response?.status === 200) {
+
+      const generatedId = response?.data[stringConstants.itemId]
+
+      if (!generatedId) return alert("Error occurd !");
+      stockItemDispatch(
+        additems({
+          ...item,
+          [stringConstants.itemId]: generatedId,
+        })
+      );
     }
-  }
+  };
 
   return (
     <>
@@ -53,7 +42,7 @@ export const AddStockItems = () => {
         <InputWrapper>
           <TextBoxComponent
             label="Item Code"
-            value={item.itemCode}
+            value={item[stringConstants.itemCode]}
             fullWidth={true}
             onChange={(e) =>
               dispatch(
@@ -67,7 +56,7 @@ export const AddStockItems = () => {
         <InputWrapper>
           <TextBoxComponent
             label="Item Name"
-            value={item.itemName}
+            value={item[stringConstants.itemName]}
             fullWidth={true}
             onChange={(e) =>
               dispatch(
@@ -81,7 +70,7 @@ export const AddStockItems = () => {
         <InputWrapper>
           <TextBoxComponent
             label="Item Description"
-            value={item.itemDesc}
+            value={item[stringConstants.itemDesc]}
             fullWidth={true}
             onChange={(e) =>
               dispatch(
@@ -95,16 +84,15 @@ export const AddStockItems = () => {
         <InputWrapper>
           <TextBoxComponent
             label="Item purchase price"
-            value={item.itemPurchasePrice}
+            value={item[stringConstants.purchasePrice]}
             fullWidth={true}
-            onChange={(e) =>
+            onChange={(value) =>
               dispatch(
-                createDispatchAction(
-                  stringConstants.itemPurchasePrice,
-                  e.target.value
-                )
+                createDispatchAction(stringConstants.purchasePrice, value)
               )
             }
+            numericInput={true}
+            thousandSeparator={true}
           />
         </InputWrapper>
 
@@ -112,16 +100,15 @@ export const AddStockItems = () => {
         <InputWrapper>
           <TextBoxComponent
             label="Item selling price"
-            value={item.itemSellingPrice}
+            value={item[stringConstants.sellingPrice]}
             fullWidth={true}
-            onChange={(e) =>
+            onChange={(value) =>
               dispatch(
-                createDispatchAction(
-                  stringConstants.itemSellingPrice,
-                  e.target.value
-                )
+                createDispatchAction(stringConstants.sellingPrice, value)
               )
             }
+            numericInput={true}
+            thousandSeparator={true}
           />
         </InputWrapper>
 
@@ -129,13 +116,12 @@ export const AddStockItems = () => {
         <InputWrapper>
           <TextBoxComponent
             label="Item amount"
-            value={item.itemAmount}
+            value={item[stringConstants.stockAmount]}
             fullWidth={true}
-            onChange={(e) =>
-              dispatch(
-                createDispatchAction(stringConstants.itemAmount, e.target.value)
-              )
+            onChange={(value) =>
+              dispatch(createDispatchAction(stringConstants.stockAmount, value))
             }
+            numericInput={true}
           />
         </InputWrapper>
 
@@ -143,12 +129,12 @@ export const AddStockItems = () => {
         <InputWrapper>
           <DatePickerComponent
             label="Item purchase date"
-            value={item.itemPurchaseDate}
+            value={item[stringConstants.purchaseDate]}
             fullWidth={true}
             onChange={(date) =>
               dispatch(
                 createDispatchAction(
-                  stringConstants.itemPurchaseDate,
+                  stringConstants.purchaseDate,
                   moment(date).format("MMMM Do YYYY")
                 )
               )
@@ -159,9 +145,17 @@ export const AddStockItems = () => {
         {/* item description */}
         <InputWrapper>
           <ButtonComponent
-            label="Add Item"
+            label={
+              item?.[stringConstants.itemId] === null
+                ? "Add Item"
+                : "Update Item"
+            }
             style={{ width: "100%" }}
             onClick={() => handlAddItem(item)}
+            sx={{
+              background:
+                item?.[stringConstants.itemId] === null ? null : greeTheme,
+            }}
           />
         </InputWrapper>
       </InputWrapperStack>

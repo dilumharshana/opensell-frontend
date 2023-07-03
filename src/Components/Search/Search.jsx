@@ -5,9 +5,10 @@ import { searchBoxStyle, searchBtnStyle } from "../../Constants/styles";
 import { ButtonComponent } from "../InputComponents/ButtonComponent/ButtonComponent";
 import { TextBoxComponent } from "../InputComponents/TextBoxComponent/TextBoxComponent";
 
-export const SearchBar = ({ search, setSearch, handleSearch }) => {
+export const SearchBar = ({ search, setSearch, handleSearch, style = {} }) => {
+
   return (
-    <Grid container spacing={1}>
+    <Grid container spacing={1} style={style}>
       <Grid item>
         <TextBoxComponent
           id="search"
@@ -29,7 +30,8 @@ export const SearchBar = ({ search, setSearch, handleSearch }) => {
             ),
           }}
           size="large"
-          sx={searchBoxStyle}
+          style={searchBoxStyle}
+          autoFocus={true}
         />
       </Grid>
       <Grid item>

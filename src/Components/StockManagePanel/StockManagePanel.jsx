@@ -4,9 +4,8 @@ import { useSelector } from "react-redux";
 import { SearchBar } from "../Search/Search";
 import { StockItems } from "../StockItems/StockItems";
 
-export const StockManagePanel = () => {
-
-  const data = useSelector(state => state?.stockItems)
+export const StockManagePanel = ({ dispatch }) => {
+  const data = useSelector((state) => state?.stockItems);
 
   return (
     <Grid container direction="column" spacing={5}>
@@ -14,7 +13,11 @@ export const StockManagePanel = () => {
         <SearchBar />
       </Grid>
       <Grid item>
-        <StockItems items={data?.stockItems} isFetching={data?.isFetching} />
+        <StockItems
+          items={data?.stockItems}
+          isFetching={data?.isFetching}
+          dispatch={dispatch}
+        />
       </Grid>
     </Grid>
   );
