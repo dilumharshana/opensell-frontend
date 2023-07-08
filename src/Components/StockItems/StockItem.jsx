@@ -51,7 +51,7 @@ export const StockItem = ({ item, styles, dispatch }) => {
                     alignItems="center"
                   >
                     <LocalGroceryStoreIcon style={{ color: greeTheme }} />
-                    <Box ml={2}> {item?.STOCK_AMOUNT && item.STOCK_AMOUNT}</Box>
+                    <Box ml={2}> {item?.[stringConstants.stockAmount] && item?.[stringConstants.stockAmount]}</Box>
                   </Typography>
                 </Box>
               </Box>
@@ -74,7 +74,7 @@ export const StockItem = ({ item, styles, dispatch }) => {
                 <IconButton
                   aria-label="previous"
                   onClick={() =>
-                    dispatch(createDispatchAction("RESET_STATE", item))
+                    dispatch(createDispatchAction("UPDATE_STATE", item))
                   }
                 >
                   <EditIcon />

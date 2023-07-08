@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
 import { StockItem } from "./StockItem";
+import { stringConstants } from "../../Constants/StringConstants";
 
 export const StockItems = ({ items = [], isFetching, dispatch }) => {
   if (isFetching) return <>Loading items...</>;
@@ -9,7 +10,7 @@ export const StockItems = ({ items = [], isFetching, dispatch }) => {
       {items?.map((item) => (
         <StockItem
           item={item}
-          key={item.itemId}
+          key={item?.[stringConstants.itemId]}
           dispatch={dispatch}
         />
       ))}

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Api from "../Services/apiCallsHandler";
 import { endPoints } from "../Constants/endpoints";
+import { stringConstants } from "../Constants/StringConstants";
 
 const initialState = {
   fetching: false,
@@ -13,7 +14,6 @@ const api = new Api();
 export const fetchStockItems = createAsyncThunk(
   "stockitems/fetchStockItems",
   () => {
-    console.log("called");
     return api.get(endPoints.getStock);
   }
 );
@@ -29,12 +29,35 @@ export const stockSlice = createSlice({
         error: "",
       };
     },
-    // decrement: (state) => {
-    //   state.value -= 1
-    // },
-    // incrementByAmount: (state, action) => {
-    //   state.value += action.payload
-    // },
+    updateItem: (state, action) => {
+      const updatedStock = state.stockItems.map((selectedItem) => {
+        if (
+          selectedItem?.[stringConstants.itemId] !==
+          action?.payload?.[stringConstants.itemId]
+        )
+          return selectedItem;
+
+        return {
+          [stringConstants?.itemId]: action.payload?.[stringConstants.itemId],
+          [stringConstants?.itemCode]:
+            action.payload?.[stringConstants.itemCode],
+          [stringConstants?.itemName]:
+            action.payload?.[stringConstants.itemName],
+          [stringConstants?.itemDesc]:
+            action.payload?.[stringConstants.itemDesc],
+          [stringConstants?.stockAmount]:
+            action.payload?.[stringConstants.stockAmount],
+          [stringConstants?.sellingPrice]:
+            action.payload?.[stringConstants.sellingPrice],
+          [stringConstants?.purchasePrice]:
+            action.payload?.[stringConstants.purchasePrice],
+        };
+      });
+
+      return {
+        stockItems: updatedStock,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchStockItems.pending, (state) => {
@@ -52,5 +75,5 @@ export const stockSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { additems } = stockSlice.actions;
+export const { additems, updateItem } = stockSlice.actions;
 export default stockSlice.reducer;

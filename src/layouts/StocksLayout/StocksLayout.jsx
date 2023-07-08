@@ -5,22 +5,25 @@ import { useEffect, useReducer, useState } from "react";
 import { stringConstants } from "../../Constants/StringConstants";
 
 const initialItemData = {
-  [stringConstants.itemId]: null,
+  [stringConstants.itemId]: "",
   [stringConstants.itemName]: "",
   [stringConstants.itemCode]: "",
   [stringConstants.itemDesc]: "",
-  [stringConstants.purchasePrice]: null,
-  [stringConstants.sellingPrice]: null,
-  [stringConstants.stockAmount]: null,
+  [stringConstants.purchasePrice]: "",
+  [stringConstants.sellingPrice]: "",
+  [stringConstants.stockAmount]: "",
 };
 
 const reducer = (state, action) => {
+  console.log(action);
   if (action.type === "RESET_STATE") {
-    console.log(action);
-    
+    return initialItemData;
+  }
+
+  if (action.type === "UPDATE_STATE") {
     return {
       ...state,
-      ...action.payload,
+      ...action.payload
     };
   }
 
@@ -32,8 +35,6 @@ const reducer = (state, action) => {
 
 export const StocksLayout = () => {
   const [item, dispatch] = useReducer(reducer, initialItemData);
-  
-  console.log(item);
 
   return (
     <Grid container>

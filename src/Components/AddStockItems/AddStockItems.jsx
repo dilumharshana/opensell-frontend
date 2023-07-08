@@ -1,8 +1,8 @@
 import moment from "moment";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { stringConstants } from "../../Constants/StringConstants";
 import { endPoints } from "../../Constants/endpoints";
-import { additems } from "../../Features/stockSlice";
+import { additems, updateItem } from "../../Features/stockSlice";
 import Api from "../../Services/apiCallsHandler";
 import { createDispatchAction } from "../../Utills/createDispatchAction";
 import { ButtonComponent } from "../InputComponents/ButtonComponent/ButtonComponent";
@@ -20,8 +20,7 @@ export const AddStockItems = ({ item, dispatch }) => {
 
     const response = await api.post(endPoints.addItem, item);
     if (response?.status === 200) {
-
-      const generatedId = response?.data[stringConstants.itemId]
+      const generatedId = response?.data[stringConstants.itemId];
 
       if (!generatedId) return alert("Error occurd !");
       stockItemDispatch(
@@ -31,6 +30,19 @@ export const AddStockItems = ({ item, dispatch }) => {
         })
       );
     }
+
+    dispatch("RESET_STATE");
+  };
+
+  const handleUpdateItem = async () => {
+    const api = new Api();
+
+    const response = await api.post(endPoints.addItem, item);
+    if (response?.status === 200) {
+      stockItemDispatch(updateItem(item));
+    }
+
+    dispatch(createDispatchAction("RESET_STATE"), null);
   };
 
   return (
@@ -151,7 +163,11 @@ export const AddStockItems = ({ item, dispatch }) => {
                 : "Update Item"
             }
             style={{ width: "100%" }}
-            onClick={() => handlAddItem(item)}
+            onClick={() =>
+              stringConstants.itemId
+                ? handleUpdateItem(item)
+                : handlAddItem(item)
+            }
             sx={{
               background:
                 item?.[stringConstants.itemId] === null ? null : greeTheme,
