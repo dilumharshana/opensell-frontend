@@ -99,19 +99,19 @@ export default function MainAppLayout() {
               label="Billing"
               {...a11yProps(0)}
               icon={<ShoppingCartIcon />}
-              sx={{ borderBottom: 1, borderColor: "divider" }}
+              sx={{ borderBottom: 1, borderColor: "divider" ,background:"#fff" }}
             />
             <Tab
               label="Stocks"
               {...a11yProps(1)}
               icon={<LibraryBooksIcon />}
-              sx={{ borderBottom: 1, borderColor: "divider" }}
+              sx={{ borderBottom: 1, borderColor: "divider",background:"#fff"  }}
             />
             <Tab
               label="Settings"
               {...a11yProps(2)}
               icon={<SettingsIcon />}
-              sx={{ borderColor: "divider" }}
+              sx={{ borderColor: "divider",background:"#fff" }}
             />
           </Tabs>
         </Box>

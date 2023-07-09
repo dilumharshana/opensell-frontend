@@ -17,10 +17,12 @@ export const TextBoxComponent = forwardRef(
       fullWidth = true,
       className,
       onKeyDown,
+      onKeyPress,
       focus,
       autoFocus,
       thousandSeparator = false,
       required = false,
+      inputProps,
       numericInput = false,
     },
     ref
@@ -31,9 +33,11 @@ export const TextBoxComponent = forwardRef(
           value={value}
           onChange={onChange}
           onKeyDown={onKeyDown}
+          onKeyPress={onKeyPress}
           thousandSeparator={thousandSeparator}
           required={required}
           lablel={label}
+          inputProps={inputProps}
           ref={ref}
         />
       );
@@ -53,10 +57,12 @@ export const TextBoxComponent = forwardRef(
         fullWidth={fullWidth}
         className={className}
         onKeyDown={onKeyDown}
+        onKeyPress={onKeyPress}
         inputRef={ref}
         focused={focus}
         autoFocus={autoFocus}
         required={required}
+        InputProps={inputProps}
       />
     );
   }
@@ -64,7 +70,15 @@ export const TextBoxComponent = forwardRef(
 
 const NumericInput = forwardRef(
   (
-    { value, onChange, onKeyDown, thousandSeparator, required, lablel },
+    {
+      value,
+      onChange,
+      onKeyDown,
+      thousandSeparator,
+      required,
+      lablel,
+      inputProps,
+    },
     ref
   ) => {
     return (
@@ -82,6 +96,7 @@ const NumericInput = forwardRef(
         required={required}
         onKeyDown={onKeyDown}
         ref={ref}
+        inputProps={inputProps}
       />
     );
   }

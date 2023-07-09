@@ -23,6 +23,7 @@ export const AddStockItems = ({ item, dispatch }) => {
       const generatedId = response?.data[stringConstants.itemId];
 
       if (!generatedId) return alert("Error occurd !");
+      
       stockItemDispatch(
         additems({
           ...item,
@@ -158,19 +159,19 @@ export const AddStockItems = ({ item, dispatch }) => {
         <InputWrapper>
           <ButtonComponent
             label={
-              item?.[stringConstants.itemId] === null
+              item?.[stringConstants.itemId] === ""
                 ? "Add Item"
                 : "Update Item"
             }
             style={{ width: "100%" }}
             onClick={() =>
-              stringConstants.itemId
+              item?.[stringConstants.itemId]
                 ? handleUpdateItem(item)
                 : handlAddItem(item)
             }
             sx={{
               background:
-                item?.[stringConstants.itemId] === null ? null : greeTheme,
+                item?.[stringConstants.itemId] === "" ? null : greeTheme,
             }}
           />
         </InputWrapper>

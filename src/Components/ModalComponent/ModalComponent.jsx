@@ -7,14 +7,22 @@ export const ModalCopmonet = ({
   onCancel,
   onOk,
   okuttonDisabled,
+  centerd,
+  title,
+  footer,
+  width,
 }) => {
   return (
     <Modal
       open={open}
-      onCancel={onCancel}
-      onOk={onOk}
+      title={title && title}
+      onCancel={onCancel && onCancel}
+      onOk={onOk && onOk}
       closable={false}
       okButtonProps={{ disabled: okuttonDisabled }}
+      centered={centerd}
+      footer={footer && footer}
+      width={width && width}
     >
       {children}
     </Modal>

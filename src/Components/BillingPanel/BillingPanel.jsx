@@ -10,12 +10,17 @@ export const BillingPanel = () => {
   const [search, setSearch] = useState("");
   const [openPriceModal, setOpenPriceModal] = useState(false);
   const [sellingPrice, setSellingPrice] = useState("");
+  const [sellingItem, setSellingItem] = useState({});
 
   const stockItems = useSelector((state) => state.stockItems.stockItems);
   const cartDispatch = useDispatch();
 
   const handleSearch = () => {
-    setOpenPriceModal(true);
+    const item = stockItems.filter((item) => item.ITEM_CODE === search);
+    if (item[0]) {
+      setSellingItem(item);
+      setOpenPriceModal(true);
+    }
   };
 
   const clearBillingState = () => {
@@ -25,8 +30,9 @@ export const BillingPanel = () => {
   };
 
   const handleAddItem = () => {
-    const item = stockItems.filter((item) => item.ITEM_CODE === search);
-    cartDispatch(addCartitem({ ...item[0], IEM_SELLING_PRICE: sellingPrice }));
+    cartDispatch(
+      addCartitem({ ...sellingItem[0], IEM_SELLING_PRICE: sellingPrice })
+    );
     clearBillingState();
   };
 
@@ -38,7 +44,9 @@ export const BillingPanel = () => {
         <Grid item>
           <SearchBar {...props} />
         </Grid>
-        <Grid item><BillDetails/></Grid>
+        <Grid item>
+          <BillDetails />
+        </Grid>
       </Grid>
       <SelingPriceModal
         sellingPrice={sellingPrice}

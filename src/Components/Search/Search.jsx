@@ -5,8 +5,13 @@ import { searchBoxStyle, searchBtnStyle } from "../../Constants/styles";
 import { ButtonComponent } from "../InputComponents/ButtonComponent/ButtonComponent";
 import { TextBoxComponent } from "../InputComponents/TextBoxComponent/TextBoxComponent";
 
-export const SearchBar = ({ search, setSearch, handleSearch, style = {} }) => {
-
+export const SearchBar = ({
+  search,
+  setSearch,
+  handleSearch,
+  onKeyPress = null,
+  style = {},
+}) => {
   return (
     <Grid container spacing={1} style={style}>
       <Grid item>
@@ -18,9 +23,10 @@ export const SearchBar = ({ search, setSearch, handleSearch, style = {} }) => {
           onChange={(e) => setSearch(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              handleSearch();
+              return handleSearch();
             }
           }}
+          onKeyPress={(e) => onKeyPress && onKeyPress(e)}
           className="search_box"
           InputProps={{
             endAdornment: (

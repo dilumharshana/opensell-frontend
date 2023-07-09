@@ -15,7 +15,6 @@ const initialItemData = {
 };
 
 const reducer = (state, action) => {
-  console.log(action);
   if (action.type === "RESET_STATE") {
     return initialItemData;
   }

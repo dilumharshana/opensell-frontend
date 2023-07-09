@@ -1,9 +1,7 @@
-import { Box, Stack } from "@mui/material";
-import { ModalCopmonet } from "../ModalComponent/ModalComponent";
-import { TextBoxComponent } from "../InputComponents/TextBoxComponent/TextBoxComponent";
-import { ButtonComponent } from "../InputComponents/ButtonComponent/ButtonComponent";
-import { sellingPriceModal } from "../../Constants/styles";
 import { useEffect, useRef } from "react";
+import { TextBoxComponent } from "../InputComponents/TextBoxComponent/TextBoxComponent";
+import { ModalCopmonet } from "../ModalComponent/ModalComponent";
+import { InputAdornment } from "@material-ui/core";
 
 export const SelingPriceModal = ({
   sellingPrice,
@@ -16,7 +14,6 @@ export const SelingPriceModal = ({
   const ref = useRef(null);
 
   useEffect(() => {
-    console.log("ref => ", ref);
     if (ref.current) {
       ref.current.focus();
     }
@@ -28,20 +25,23 @@ export const SelingPriceModal = ({
       onCancel={cancelPriceModal}
       onOk={handleAddItem}
       okuttonDisabled={sellingPrice.length === 0}
+      centerd={true}
+      title="Enter Selling Price"
     >
-      <Stack mt={1} direction="row" spacing={2} alignItems="center">
-        <span>Enter Selling Price</span>
-        <TextBoxComponent
-          value={sellingPrice}
-          onChange={(e) => setSellingPrice(e.target.value)}
-          ref={ref}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleAddItem();
-            }
-          }}
-        />
-      </Stack>
+      <TextBoxComponent
+        value={sellingPrice}
+        onChange={(value) => setSellingPrice(value)}
+        ref={ref}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleAddItem();
+          }
+        }}
+        numericInput={true}
+        inputProps={{
+          startAdornment: <InputAdornment position="start">Rs.</InputAdornment>,
+        }}
+      />
     </ModalCopmonet>
   );
 };
