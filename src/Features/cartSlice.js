@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { stringConstants } from "../Constants/StringConstants";
 
 const initialState = {};
 
@@ -7,12 +8,15 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addCartitem: (state, action) => {
-      if (state.hasOwnProperty(action.payload.ITEM_CODE)) {
+      if (state.hasOwnProperty(action.payload?.[stringConstants.itemCode])) {
         return {
           ...state,
-          [action.payload.ITEM_CODE]: {
+          [action.payload?.[stringConstants.itemCode]]: {
             ...action.payload,
-            ITEM_QUANTITY: state[action.payload.ITEM_CODE]?.ITEM_QUANTITY + 1,
+            [stringConstants.itemQuantity]:
+              state[action.payload?.[stringConstants.itemCode]]?.[
+                stringConstants.itemQuantity
+              ] + 1,
           },
         };
       }

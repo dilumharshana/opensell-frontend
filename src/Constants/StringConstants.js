@@ -7,5 +7,5 @@ export const stringConstants = {
   sellingPrice: "SELLING_PRICE",
   purchaseDate: "PURCHASED_DATE",
   stockAmount: "STOCK_AMOUNT",
-  itemQuantity: "QUANTITY",
+  itemQuantity: "ITEM_QUANTITY",
 };

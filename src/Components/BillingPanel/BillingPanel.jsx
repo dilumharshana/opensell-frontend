@@ -5,6 +5,7 @@ import { addCartitem } from "../../Features/cartSlice";
 import { SearchBar } from "../Search/Search";
 import { SelingPriceModal } from "../SellingPriceModal/SelingPriceModal";
 import { BillDetails } from "./BillDetails";
+import { stringConstants } from "../../Constants/StringConstants";
 
 export const BillingPanel = () => {
   const [search, setSearch] = useState("");
@@ -30,8 +31,15 @@ export const BillingPanel = () => {
   };
 
   const handleAddItem = () => {
+    console.log(sellingItem[0]);
     cartDispatch(
-      addCartitem({ ...sellingItem[0], IEM_SELLING_PRICE: sellingPrice })
+      addCartitem({
+        [stringConstants.itemCode]: sellingItem[0]?.[stringConstants.itemCode],
+        [stringConstants.itemName]: sellingItem[0]?.[stringConstants.itemName],
+        [stringConstants.itemQuantity]:
+          sellingItem[0]?.[stringConstants.itemQuantity],
+        [stringConstants.sellingPrice]: sellingPrice,
+      })
     );
     clearBillingState();
   };

@@ -14,73 +14,56 @@ import {
   incrementItemQuantity,
   removeCartItem,
 } from "../../Features/cartSlice";
+import { stringConstants } from "../../Constants/StringConstants";
 
 export const CartItem = ({ item, styles = null }) => {
   const cartItemDispatch = useDispatch();
 
-  const removeItem = () => cartItemDispatch(removeCartItem(item.ITEM_CODE));
+  const removeItem = () =>
+    cartItemDispatch(removeCartItem(item?.[stringConstants.itemCode]));
   const incrementItem = () =>
-    cartItemDispatch(incrementItemQuantity(item.ITEM_CODE));
+    cartItemDispatch(incrementItemQuantity(item?.[stringConstants.itemCode]));
   const decrementItem = () =>
-    cartItemDispatch(decrementItemQuantity(item.ITEM_CODE));
+    cartItemDispatch(decrementItemQuantity(item?.[stringConstants.itemCode]));
 
   return (
     <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
       <Card sx={styles}>
-        <Grid container alignItems="center"> 
+        <Grid container alignItems="center">
           {/* name and description */}
           <Grid item xs={12} sm={12} md={6} lg={5} xl={5}>
-            <CardContent >
+            <CardContent>
               <Typography component="div" variant="h5">
-                {item?.ITEM_NAME && item.ITEM_NAME}
+                {item?.[stringConstants.itemName] &&
+                  item[stringConstants.itemName]}
               </Typography>
             </CardContent>
           </Grid>
 
           {/* quantity */}
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            md={2}
-            lg={2}
-            xl={2}
-
-          >
-            <CardContent >
-              <span className="item-quantity">{item?.ITEM_QUANTITY}</span>
+          <Grid item xs={12} sm={12} md={2} lg={2} xl={2}>
+            <CardContent>
+              <span className="item-quantity">
+                {item?.[stringConstants.itemQuantity] &&
+                  item[stringConstants.itemQuantity]}
+              </span>
             </CardContent>
           </Grid>
 
           {/* price */}
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            md={2}
-            lg={2}
-            xl={2}
-
-          >
-            <CardContent >
+          <Grid item xs={12} sm={12} md={2} lg={2} xl={2}>
+            <CardContent>
               <span className="item-quantity">
-                {item?.ITEM_QUANTITY * item.IEM_SELLING_PRICE}
+                {item[stringConstants.itemQuantity] *
+                  item[stringConstants.sellingPrice]}
               </span>
             </CardContent>
           </Grid>
 
           {/* options */}
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            md={2}
-            lg={1}
-            xl={1}
-
-          >
-            <CardContent >
-              <Box sx={{ display: "flex", alignItems: "center"}}>
+          <Grid item xs={12} sm={12} md={2} lg={1} xl={1}>
+            <CardContent>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
                 <IconButton aria-label="previous" onClick={incrementItem}>
                   <AddCircleIcon sx={{ color: greeTheme }} />
                 </IconButton>
