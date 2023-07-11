@@ -18,8 +18,8 @@ export const BillingPanel = () => {
 
   const handleSearch = () => {
     const item = stockItems.filter((item) => item.ITEM_CODE === search);
-    if (item[0]) {
-      setSellingItem(item);
+    if (item) {
+      setSellingItem(item[0]);
       setOpenPriceModal(true);
     }
   };
@@ -31,13 +31,16 @@ export const BillingPanel = () => {
   };
 
   const handleAddItem = () => {
-    console.log(sellingItem[0]);
+    console.log(sellingItem);
     cartDispatch(
       addCartitem({
-        [stringConstants.itemCode]: sellingItem[0]?.[stringConstants.itemCode],
-        [stringConstants.itemName]: sellingItem[0]?.[stringConstants.itemName],
+        [stringConstants.itemCode]: sellingItem?.[stringConstants.itemCode],
+        [stringConstants.itemName]: sellingItem?.[stringConstants.itemName],
+        [stringConstants.itemId]: sellingItem?.[stringConstants.itemId],
+        [stringConstants.remainStockAmount]:
+          sellingItem?.[stringConstants.stockAmount],
         [stringConstants.itemQuantity]:
-          sellingItem[0]?.[stringConstants.itemQuantity],
+          sellingItem?.[stringConstants.itemQuantity],
         [stringConstants.sellingPrice]: sellingPrice,
       })
     );

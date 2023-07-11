@@ -4,7 +4,7 @@ import { ModalCopmonet } from "../ModalComponent/ModalComponent";
 import { InputAdornment } from "@material-ui/core";
 
 export const SelingPriceModal = ({
-  sellingPrice,
+  sellingPrice,  
   setSellingPrice,
   clearBillingState,
   handleAddItem,

@@ -8,4 +8,5 @@ export const stringConstants = {
   purchaseDate: "PURCHASED_DATE",
   stockAmount: "STOCK_AMOUNT",
   itemQuantity: "ITEM_QUANTITY",
+  remainStockAmount: "REMAIN_STOCK_AMOUNT",
 };
