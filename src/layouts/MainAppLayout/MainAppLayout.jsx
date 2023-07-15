@@ -10,6 +10,7 @@ import { StocksLayout } from "../StocksLayout/StocksLayout";
 import Box from "@mui/material/Box";
 import { NavBar } from "../../Components/NavBar";
 import { Grid } from "@material-ui/core";
+import { SalesLayout } from "../SalesLayout/SalesLayout";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -72,7 +73,7 @@ export default function MainAppLayout() {
             <StocksLayout />
           </TabPanel>
           <TabPanel value={value} index={2}>
-            Item Three
+            <SalesLayout/>
           </TabPanel>
           <TabPanel value={value} index={3}>
             Item Four
@@ -108,7 +109,7 @@ export default function MainAppLayout() {
               sx={{ borderBottom: 1, borderColor: "divider",background:"#fff"  }}
             />
             <Tab
-              label="Settings"
+              label="Sales"
               {...a11yProps(2)}
               icon={<SettingsIcon />}
               sx={{ borderColor: "divider",background:"#fff" }}

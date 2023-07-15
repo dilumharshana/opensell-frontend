@@ -1,17 +1,20 @@
 import { Box, Grid } from "@mui/material";
 import React, { useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { connectPrinter } from "../../Services/connectPrinter";
 import { ButtonComponent } from "../InputComponents/ButtonComponent/ButtonComponent";
 import { TextBoxComponent } from "../InputComponents/TextBoxComponent/TextBoxComponent";
 import Api from "../../Services/apiCallsHandler";
 import { endPoints } from "../../Constants/endpoints";
 import { stringConstants } from "../../Constants/StringConstants";
+import { fetchStockItems } from "../../Features/stockSlice";
+import { emptyCart } from "../../Features/cartSlice";
 
 export const BillDetails = () => {
   const [discount, setDiscount] = useState();
   const [recivedCash, setRecivedCash] = useState();
   const cart = useSelector((state) => state?.cart);
+  const dispatch = useDispatch();
 
   const ePosDevice = useRef();
   const printer = useRef();
@@ -69,6 +72,11 @@ export const BillDetails = () => {
     };
 
     const response = await api.post(endPoints.saveBill, data);
+
+    if(response?.status === 200){
+      dispatch(fetchStockItems())
+      dispatch(emptyCart())
+    }
   };
 
   return (

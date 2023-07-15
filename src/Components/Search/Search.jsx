@@ -11,6 +11,7 @@ export const SearchBar = ({
   handleSearch,
   onKeyPress = null,
   style = {},
+  label="Search Product"
 }) => {
   return (
     <Grid container spacing={1} style={style}>
@@ -18,7 +19,7 @@ export const SearchBar = ({
         <TextBoxComponent
           id="search"
           type="search"
-          label="Search Product"
+          label={label}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           onKeyDown={(e) => {

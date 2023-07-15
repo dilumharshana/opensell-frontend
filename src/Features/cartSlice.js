@@ -44,6 +44,9 @@ export const cartSlice = createSlice({
         state[action.payload].ITEM_QUANTITY - 1;
       return state;
     },
+    emptyCart:(state , action) => {
+      return {}
+    }
   },
 });
 
@@ -53,5 +56,6 @@ export const {
   removeCartItem,
   incrementItemQuantity,
   decrementItemQuantity,
+  emptyCart
 } = cartSlice.actions;
 export default cartSlice.reducer;

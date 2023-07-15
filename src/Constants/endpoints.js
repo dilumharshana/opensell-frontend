@@ -3,4 +3,5 @@ export const endPoints = {
   addItem: `${import.meta.env.VITE_BACK_END_URL}pos/stockItem`,
   getStock: `${import.meta.env.VITE_BACK_END_URL}pos/stockItems`,
   saveBill:`${import.meta.env.VITE_BACK_END_URL}pos/saveBill`,
+  getSales:`${import.meta.env.VITE_BACK_END_URL}pos/sales`,
 };

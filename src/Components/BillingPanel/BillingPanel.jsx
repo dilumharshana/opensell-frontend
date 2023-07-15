@@ -18,7 +18,7 @@ export const BillingPanel = () => {
 
   const handleSearch = () => {
     const item = stockItems.filter((item) => item.ITEM_CODE === search);
-    if (item) {
+    if (item[0]) {
       setSellingItem(item[0]);
       setOpenPriceModal(true);
     }
@@ -31,7 +31,6 @@ export const BillingPanel = () => {
   };
 
   const handleAddItem = () => {
-    console.log(sellingItem);
     cartDispatch(
       addCartitem({
         [stringConstants.itemCode]: sellingItem?.[stringConstants.itemCode],
