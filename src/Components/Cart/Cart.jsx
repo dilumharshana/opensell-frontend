@@ -3,6 +3,7 @@ import { CartItem } from "../CartItem/CartItem";
 import { stringConstants } from "../../Constants/StringConstants";
 import { useSelector } from "react-redux";
 import { CartTitles } from "../CartItem/CartTitles";
+import { cartItemStyle } from "../../Constants/styles";
 
 export const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -11,7 +12,7 @@ export const Cart = () => {
     <Grid container spacing={1} direction="row">
       {Object.keys(cart)?.length > 0 && <CartTitles />}
       {Object.keys(cart).map((item, index) => {
-        return <CartItem key={index} item={cart[item]} />;
+        return <CartItem key={index} item={cart[item]} styles={cartItemStyle} />;
       })}
     </Grid>
   );

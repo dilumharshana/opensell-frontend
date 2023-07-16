@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, InputAdornment } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { connectPrinter } from "../../Services/connectPrinter";
@@ -9,6 +9,7 @@ import { endPoints } from "../../Constants/endpoints";
 import { stringConstants } from "../../Constants/StringConstants";
 import { fetchStockItems } from "../../Features/stockSlice";
 import { emptyCart } from "../../Features/cartSlice";
+import { printButtonStyles, whiteInputBox } from "../../Constants/styles";
 
 export const BillDetails = () => {
   const [discount, setDiscount] = useState();
@@ -80,47 +81,55 @@ export const BillDetails = () => {
   };
 
   return (
-    <Grid container direction="column" spacing={3}>
+    <Grid container direction="column" spacing={3} className="basic-bill-cashll-container">
       <Grid item>
         <Box display="flex">
-          <Box mr={3}>TOTAL</Box>
-          <Box>{total}</Box>
+          <Box className="basic-bill-descripion">TOTAL</Box>
+          <Box>Rs. {total}</Box>
         </Box>
       </Grid>
       <Grid item>
         <Box display="flex" alignItems="center">
-          <Box mr={3}>DISCOUNT</Box>
+          <Box className="basic-bill-descripion">DISCOUNT</Box>
           <Box>
             <TextBoxComponent
               value={discount}
               onChange={(value) => setDiscount(value)}
               numericInput={true}
               thousandSeparator={true}
+              style={whiteInputBox}
+              inputProps={{
+                startAdornment: <InputAdornment position="start">Rs.</InputAdornment>,
+              }}
             />
           </Box>
         </Box>
       </Grid>
       <Grid item>
         <Box display="flex" alignItems="center">
-          <Box mr={3}>RECIVED</Box>
+          <Box className="basic-bill-descripion">RECIVED</Box>
           <Box>
             <TextBoxComponent
               value={recivedCash}
               onChange={(value) => setRecivedCash(value)}
               numericInput={true}
               thousandSeparator={true}
+              style={whiteInputBox}
+              inputProps={{
+                startAdornment: <InputAdornment position="start">Rs.</InputAdornment>,
+              }}
             />
           </Box>
         </Box>
       </Grid>
       <Grid item>
         <Box display="flex">
-          <Box mr={3}>BALANCE</Box>
-          <Box>{balance}</Box>
+          <Box className="basic-bill-descripion">BALANCE</Box>
+          <Box>Rs. {balance}</Box>
         </Box>
       </Grid>
-      <Grid item>
-        <ButtonComponent label="Sell" onClick={handleSaveBill} />
+      <Grid item display="flex" justifyContent="center" mt={4}>
+        <ButtonComponent label="Sell" onClick={handleSaveBill} style={printButtonStyles}/>
       </Grid>
     </Grid>
   );

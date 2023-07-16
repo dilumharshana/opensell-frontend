@@ -67,13 +67,19 @@ export default function MainAppLayout() {
           }}
         >
           <TabPanel value={value} index={0}>
+            <Box p={2}>
             <BillingLayout />
+            </Box>
           </TabPanel>
           <TabPanel value={value} index={1}>
+            <Box p={2}>
             <StocksLayout />
+            </Box>
           </TabPanel>
           <TabPanel value={value} index={2}>
+            <Box p={2}>
             <SalesLayout/>
+            </Box>
           </TabPanel>
           <TabPanel value={value} index={3}>
             Item Four

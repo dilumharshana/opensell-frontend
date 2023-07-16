@@ -36,7 +36,7 @@ export const StocksLayout = () => {
   const [item, dispatch] = useReducer(reducer, initialItemData);
 
   return (
-    <Grid container>
+    <Grid container spacing={3}>
       <Grid item sm={12} md={12} lg={9} xl={9}>
         <StockManagePanel dispatch={dispatch} />
       </Grid>

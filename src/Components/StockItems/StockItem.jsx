@@ -4,11 +4,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import { Box, Card, Grid, IconButton, Typography } from "@mui/material";
-import { greeTheme } from "../../Constants/styles";
-import { createDispatchAction } from "../../Utills/createDispatchAction";
-import { stringConstants } from "../../Constants/StringConstants";
-import { ItemModal } from "../ItemModal/ItemModal";
 import { useState } from "react";
+import { stringConstants } from "../../Constants/StringConstants";
+import { createDispatchAction } from "../../Utills/createDispatchAction";
+import { ItemModal } from "../ItemModal/ItemModal";
 
 export const StockItem = ({ item, styles, dispatch }) => {
   const [popupItem, setPopupItem] = useState({});
@@ -16,7 +15,7 @@ export const StockItem = ({ item, styles, dispatch }) => {
   return (
     <>
       <Grid item sx={12} sm={12} md={4} lg={3} xl={3}>
-        <Card sx={styles}>
+        <Card sx={styles} elevation={2}>
           <Grid container>
             {/* name and description */}
             <Grid
@@ -38,6 +37,7 @@ export const StockItem = ({ item, styles, dispatch }) => {
                   variant="subtitle1"
                   component="div"
                 >
+                  Code:
                   {item?.[stringConstants.itemCode] &&
                     item[stringConstants.itemCode]}
                 </Typography>
@@ -89,14 +89,19 @@ export const StockItem = ({ item, styles, dispatch }) => {
               alignItems="center"
             >
               <CardContent sx={{ flex: "1 0 auto" }}>
-                <Box display="flex" flexDirection="column" justifyContent="flex-end" pl={5} >
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  justifyContent="flex-end"
+                  pl={5}
+                >
                   <IconButton
                     aria-label="previous"
                     onClick={() =>
                       dispatch(createDispatchAction("UPDATE_STATE", item))
                     }
                   >
-                    <EditIcon  />
+                    <EditIcon />
                   </IconButton>
                   <IconButton aria-label="next">
                     <DeleteIcon />

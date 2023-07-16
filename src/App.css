@@ -1,5 +1,5 @@
-body{
-  background-color: #e8e8e8;
+.bold-text {
+  font-weight: bold;
 }
 
 .btn_search {
@@ -46,11 +46,103 @@ body{
   color: "#fff";
 }
 
-
-.bold-text{
+.bold-text {
   font-weight: bold;
 }
 
-.sale-lable{
+.gray-text {
+  color: #4d4d4d;
+}
+
+.sale-lable {
   min-width: 200px;
+}
+
+.basic-font {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.basic-bill-details-container {
+  background-color: #12af41;
+  padding: 10%;
+  color: #fff;
+  font-family: arial;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+.basic-bill-descripion {
+  min-width: 170px;
+}
+
+.basic-bill-value {
+  width: 70%;
+  background-color: #ffffff;
+  color: darkgreen;
+  padding: 3%;
+  min-width: 150px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.currency-standard-label {
+  color: #207020;
+}
+
+.salled-items-label {
+  background-color: #ffffff;
+  font-family: arial;
+  color: #706d6d;
+  border-radius: 25px;
+  border: 0.5px solid #12af41;
+  display: flex;
+  justify-content: center;
+}
+
+.sale-result-label {
+  background-color: #fff;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 1);
+  box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 1);
+}
+
+.bill-search-default-container {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bill-search-default-container-image {
+  width: 14vw;
+  height: 20vh;
+}
+
+.bill-search-default-container-text {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #6b6a6a;
+  margin-top: 5vh;
+}
+
+.white-background-input{
+  background-color: #fff;
+}
+
+.basic-bill-cashll-container {
+  position: absolute;
+  max-width:30vw;
+  max-height: 65vh;
+  bottom: 2%;
+  left:2%;
+  background-color: #019875;
+  padding: 2% 0 2% 0;
+  color: #ffffff;
+  font-family: arial;
+  border-radius: 25px;
+  font-weight: bold;
+  
 }

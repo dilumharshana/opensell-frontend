@@ -11,7 +11,8 @@ export const SearchBar = ({
   handleSearch,
   onKeyPress = null,
   style = {},
-  label="Search Product"
+  label="Search Product",
+  disableButton = false,
 }) => {
   return (
     <Grid container spacing={1} style={style}>
@@ -51,6 +52,7 @@ export const SearchBar = ({
             handleSearch();
             setSearch("");
           }}
+          disabled={disableButton}
         />
       </Grid>
     </Grid>

@@ -5,8 +5,27 @@ export const itemCardColor = "#1478db";
 export const searchBtnStyle = { background: greeTheme };
 export const searchBoxStyle = { fontSize: "18px", minWidth: "400px" };
 export const itemCard = {
-  background: " rgb(47,174,247)",
-  background:
-    "linear-gradient(79deg, rgba(47,174,247,1) 47%, rgba(23,195,251,1) 100%)",
+  backgroundColor: "#3bb78f",
+  backgroundImage: "linear-gradient(315deg, #3bb78f 0%, #0bab64 74%)",
   color: "#fff",
 };
+
+export const whiteInputBox = {
+  background: "#fff",
+  fontWeight:"bold"
+};
+
+
+export const printButtonStyles = {
+  width:"200px",
+  background:"#fff",
+  borderRadius:"20px",
+  fontWeight:"bold",
+  fontFamily:"arial",
+  fontSize:"15px",
+  color:greeTheme
+}
+
+export const cartItemStyle ={
+  background:"#dbffd6"
+}

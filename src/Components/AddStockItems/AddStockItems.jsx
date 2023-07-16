@@ -11,6 +11,7 @@ import { TextBoxComponent } from "../InputComponents/TextBoxComponent/TextBoxCom
 import { InputWrapper } from "../InputWrapper/InputWrapper";
 import { InputWrapperStack } from "../InputWrapperStack/InputWrapperStack";
 import { greeTheme } from "../../Constants/styles";
+import { Box, Paper } from "@mui/material";
 
 export const AddStockItems = ({ item, dispatch }) => {
   const stockItemDispatch = useDispatch();
@@ -23,7 +24,7 @@ export const AddStockItems = ({ item, dispatch }) => {
       const generatedId = response?.data[stringConstants.itemId];
 
       if (!generatedId) return alert("Error occurd !");
-      
+
       stockItemDispatch(
         additems({
           ...item,
@@ -47,8 +48,10 @@ export const AddStockItems = ({ item, dispatch }) => {
   };
 
   return (
-    <>
-      <p>Add Item</p>
+    <Paper elevation={4}>
+      <Box className="bold-text gray-text basic-font" m={2} pt={2}>
+        Add Item
+      </Box>
 
       <InputWrapperStack>
         {/* item code */}
@@ -159,9 +162,7 @@ export const AddStockItems = ({ item, dispatch }) => {
         <InputWrapper>
           <ButtonComponent
             label={
-              item?.[stringConstants.itemId] === ""
-                ? "Add Item"
-                : "Update Item"
+              item?.[stringConstants.itemId] === "" ? "Add Item" : "Update Item"
             }
             style={{ width: "100%" }}
             onClick={() =>
@@ -176,6 +177,6 @@ export const AddStockItems = ({ item, dispatch }) => {
           />
         </InputWrapper>
       </InputWrapperStack>
-    </>
+    </Paper>
   );
 };
