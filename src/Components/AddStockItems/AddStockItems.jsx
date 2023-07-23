@@ -12,6 +12,7 @@ import { InputWrapper } from "../InputWrapper/InputWrapper";
 import { InputWrapperStack } from "../InputWrapperStack/InputWrapperStack";
 import { greeTheme } from "../../Constants/styles";
 import { Box, Paper } from "@mui/material";
+import { Checkbox } from "@mui/material";
 
 export const AddStockItems = ({ item, dispatch }) => {
   const stockItemDispatch = useDispatch();
@@ -139,6 +140,23 @@ export const AddStockItems = ({ item, dispatch }) => {
             }
             numericInput={true}
           />
+        </InputWrapper>
+
+        {/*is  mesurable item  */}
+        <InputWrapper>
+          <Checkbox
+            value={item[stringConstants.mesurable === 1]}
+            onChange={(e) => {
+              dispatch(
+                createDispatchAction(
+                  stringConstants.mesurable,
+                  item[stringConstants.mesurable] === 0 ? 1 : 0
+                )
+              );
+            }}
+            defaultChecked={item[stringConstants.mesurable === 1]}
+          />
+          Mesurable Item ( 1 Kg )
         </InputWrapper>
 
         {/* item purchase date */}

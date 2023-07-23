@@ -40,6 +40,7 @@ export const TextBoxComponent = forwardRef(
           inputProps={inputProps}
           ref={ref}
           style={style}
+          placeholder={placeholder}
         />
       );
     }
@@ -79,7 +80,8 @@ const NumericInput = forwardRef(
       required,
       lablel,
       inputProps,
-      style
+      style,
+      placeholder
     },
     ref
   ) => {
@@ -100,6 +102,7 @@ const NumericInput = forwardRef(
         ref={ref}
         inputProps={inputProps}
         style={style}
+        placeholder={placeholder}
       />
     );
   }

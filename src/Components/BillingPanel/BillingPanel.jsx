@@ -16,8 +16,6 @@ export const BillingPanel = () => {
   const stockItems = useSelector((state) => state.stockItems.stockItems);
   const cartDispatch = useDispatch();
 
-
-
   const handleSearch = () => {
     const item = stockItems.filter((item) => item.ITEM_CODE === search);
     if (item[0]) {
@@ -53,7 +51,7 @@ export const BillingPanel = () => {
   return (
     <>
       <Grid container direction="column" spacing={5}>
-        <Grid item >
+        <Grid item>
           <SearchBar {...props} />
         </Grid>
         <Grid item lg={7} xl={7}>
@@ -61,6 +59,8 @@ export const BillingPanel = () => {
         </Grid>
       </Grid>
       <SelingPriceModal
+        name={sellingItem[stringConstants.itemName]}
+        currentSellingPrice={sellingItem[stringConstants.sellingPrice]}
         sellingPrice={sellingPrice}
         setSellingPrice={setSellingPrice}
         clearBillingState={clearBillingState}

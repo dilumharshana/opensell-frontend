@@ -9,4 +9,5 @@ export const stringConstants = {
   stockAmount: "STOCK_AMOUNT",
   itemQuantity: "ITEM_QUANTITY",
   remainStockAmount: "REMAIN_STOCK_AMOUNT",
+  mesurable:"MESARABLE"
 };

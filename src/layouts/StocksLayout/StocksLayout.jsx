@@ -12,6 +12,7 @@ const initialItemData = {
   [stringConstants.purchasePrice]: "",
   [stringConstants.sellingPrice]: "",
   [stringConstants.stockAmount]: "",
+  [stringConstants.mesurable]: 0,
 };
 
 const reducer = (state, action) => {
