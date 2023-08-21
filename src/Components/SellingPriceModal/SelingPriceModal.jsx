@@ -10,12 +10,16 @@ export const SelingPriceModal = ({
   currentSellingPrice,
   sellingPrice,
   setSellingPrice,
-  clearBillingState,
+  mesurableAmount,
+  setMesurableAmount,
+  mesurable,
   handleAddItem,
   openPriceModal,
   cancelPriceModal,
 }) => {
   const ref = useRef(null);
+
+
 
   useEffect(() => {
     if (ref.current) {
@@ -43,6 +47,37 @@ export const SelingPriceModal = ({
         <Box p={2}>Or</Box>
         <Box>
           <Grid container direction="column" spacing={2}>
+          {
+            mesurable === 1 &&   <Grid item>
+            <Box display="flex">
+
+            <TextBoxComponent
+              value={mesurableAmount?.kg}
+              onChange={(value) => setMesurableAmount({...mesurableAmount , kg:value})}
+              ref={ref}
+              numericInput={true}
+              inputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">Kg</InputAdornment>
+                ),
+              }}
+              placeholder="1"
+            />
+            <TextBoxComponent
+              value={mesurableAmount?.g}
+              onChange={(value) => setMesurableAmount({...mesurableAmount , g:value})}
+              ref={ref}
+              numericInput={true}
+              inputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">g</InputAdornment>
+                ),
+              }}
+              placeholder="250"
+            />
+            </Box>
+          </Grid>
+          }
             <Grid item>
               <TextBoxComponent
                 value={sellingPrice}
@@ -59,7 +94,7 @@ export const SelingPriceModal = ({
                     <InputAdornment position="start">Rs.</InputAdornment>
                   ),
                 }}
-                placeholder="Add selling price"
+                placeholder={`Add selling price ${mesurable && `per Killo`}`}
               />
             </Grid>
           </Grid>

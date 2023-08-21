@@ -64,10 +64,10 @@ export const CartItem = ({ item, styles = null }) => {
           <Grid item xs={12} sm={12} md={2} lg={1} xl={1}>
             <CardContent>
               <Box sx={{ display: "flex", alignItems: "center" }}>
-                <IconButton aria-label="previous" onClick={incrementItem}>
+                <IconButton aria-label="previous" onClick={incrementItem} disabled={item?.[stringConstants.mesurable]}>
                   <AddCircleIcon sx={{ color: greeTheme }} />
                 </IconButton>
-                <IconButton aria-label="next" onClick={decrementItem}>
+                <IconButton aria-label="next" onClick={decrementItem} disabled={item?.[stringConstants.mesurable]}>
                   <RemoveCircleIcon />
                 </IconButton>
                 <IconButton aria-label="play/pause" onClick={removeItem}>

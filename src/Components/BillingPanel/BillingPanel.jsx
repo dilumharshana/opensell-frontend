@@ -12,6 +12,7 @@ export const BillingPanel = () => {
   const [openPriceModal, setOpenPriceModal] = useState(false);
   const [sellingPrice, setSellingPrice] = useState("");
   const [sellingItem, setSellingItem] = useState({});
+  const [mesurableAmount, setMesurableAmount] = useState({kg:0 , g:0});
 
   const stockItems = useSelector((state) => state.stockItems.stockItems);
   const cartDispatch = useDispatch();
@@ -27,20 +28,32 @@ export const BillingPanel = () => {
   const clearBillingState = () => {
     setSearch("");
     setSellingPrice("");
+    setMesurableAmount("");
     setOpenPriceModal(false);
   };
 
   const handleAddItem = () => {
+
+    let calculatedSellingPrice = sellingPrice
+
+    //if mesuarable item
+    if (sellingItem?.[stringConstants.mesurable] === 1) {
+      const totalAmount = parseFloat(mesurableAmount.kg) + parseFloat(mesurableAmount.g / 1000);
+      console.log(mesurableAmount , mesurableAmount.g / 1000 , totalAmount);
+      calculatedSellingPrice =totalAmount * sellingPrice;
+    }
+
     cartDispatch(
       addCartitem({
         [stringConstants.itemCode]: sellingItem?.[stringConstants.itemCode],
         [stringConstants.itemName]: sellingItem?.[stringConstants.itemName],
         [stringConstants.itemId]: sellingItem?.[stringConstants.itemId],
+        [stringConstants.mesurable]: sellingItem?.[stringConstants.mesurable],
         [stringConstants.remainStockAmount]:
           sellingItem?.[stringConstants.stockAmount],
         [stringConstants.itemQuantity]:
           sellingItem?.[stringConstants.itemQuantity],
-        [stringConstants.sellingPrice]: sellingPrice,
+        [stringConstants.sellingPrice]: calculatedSellingPrice,
       })
     );
     clearBillingState();
@@ -63,6 +76,9 @@ export const BillingPanel = () => {
         currentSellingPrice={sellingItem[stringConstants.sellingPrice]}
         sellingPrice={sellingPrice}
         setSellingPrice={setSellingPrice}
+        mesurable={sellingItem[stringConstants.mesurable]}
+        mesurableAmount={mesurableAmount}
+        setMesurableAmount={setMesurableAmount}
         clearBillingState={clearBillingState}
         handleAddItem={handleAddItem}
         openPriceModal={openPriceModal}

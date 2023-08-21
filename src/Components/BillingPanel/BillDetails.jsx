@@ -131,6 +131,9 @@ export const BillDetails = () => {
       <Grid item display="flex" justifyContent="center" mt={4}>
         <ButtonComponent label="Sell" onClick={handleSaveBill} style={printButtonStyles}/>
       </Grid>
+      <Grid item display="flex" justifyContent="center" mt={4}>
+        <ButtonComponent label="print" onClick={handlePrint} style={printButtonStyles}/>
+      </Grid>
     </Grid>
   );
 };

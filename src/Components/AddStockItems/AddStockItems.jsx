@@ -160,7 +160,7 @@ export const AddStockItems = ({ item, dispatch }) => {
         </InputWrapper>
 
         {/* item purchase date */}
-        <InputWrapper>
+        {/* <InputWrapper>
           <DatePickerComponent
             label="Item purchase date"
             value={item[stringConstants.purchaseDate]}
@@ -174,7 +174,7 @@ export const AddStockItems = ({ item, dispatch }) => {
               )
             }
           />
-        </InputWrapper>
+        </InputWrapper> */}
 
         {/* item description */}
         <InputWrapper>
